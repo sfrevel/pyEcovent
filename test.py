@@ -5,12 +5,12 @@ from ecoventv2 import Fan
 # fan=Fan("10.94.0.106", "1111" , "003A00345842570A" )
 # fan=Fan("10.94.0.105", "1111" , "DEFAULT_DEVICEID" )
 # fan=Fan("10.94.0.255", "1111" , "DEFAULT_DEVICEID" )
-fan=Fan("<broadcast>", "1111" , "DEFAULT_DEVICEID" )
+# fan=Fan("<broadcast>", "1111" , "DEFAULT_DEVICEID" )
 
-ips = fan.search_devices('0.0.0.0')
-print ( ips ) 
+# ips = fan.search_devices('0.0.0.0')
+# print ( ips ) 
 
-# ips=["10.94.0.106"]
+ips=["10.94.0.105"]
 
 for addr in ips:
     print ( addr ) 
@@ -18,11 +18,18 @@ for addr in ips:
     if fan.init_device():
         fan.update();
         # Print out all readable parameters
-        for i in ( fan.params ):
-            if fan.params[i][0] in ['filter_timer_reset', 'reset_alarms']:
-                continue
-            attr = str(getattr(fan , fan.params[i][0]))
-            print ( fan.params[i][0] + ": " + attr)
+#        for i in ( fan.params ):
+#            if fan.params[i][0] in ['filter_timer_reset', 'reset_alarms']:
+#                continue
+#            attr = str(getattr(fan , fan.params[i][0]))
+#            print ( fan.params[i][0] + ": " + attr)
+
+
+#fan.set_param('airflow','heat_recovery') # 'ventilation', 'heat_recovery', 'air_supply'
+#print ( 'airflow: ' + fan.airflow )
+## fan.reset_filter_timer()
+print ( 'Filter Timer: ' + fan.filter_timer_countdown )
+
 
 #print (ips[0])
 # fan=Fan(ips[0], "1111" , "DEFAULT_DEVICEID" )
